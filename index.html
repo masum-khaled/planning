@@ -72,17 +72,19 @@
     </div>
 
     <script>
+        function parseTime(time) {
+            if (time.includes('h')) {
+                let [hours, minutes] = time.split('h').map(Number);
+                if (isNaN(minutes)) minutes = 0;
+                return hours * 60 + minutes;
+            } else {
+                const [hours, minutes] = time.split(':').map(Number);
+                return hours * 60 + minutes;
+            }
+        }
+
         function parseTimeRange(timeRange) {
-            const [start, end] = timeRange.split('-').map(time => {
-                if (time.includes('h')) {
-                    let [hours, minutes] = time.split('h').map(Number);
-                    if (!minutes) minutes = 0;
-                    return hours * 60 + minutes;
-                } else {
-                    const [hours, minutes] = time.split(':').map(Number);
-                    return hours * 60 + minutes;
-                }
-            });
+            const [start, end] = timeRange.split('-').map(parseTime);
             return (end - start) / 60;
         }
 
