@@ -56,6 +56,7 @@
             border: none;
             cursor: pointer;
             margin-top: 10px;
+            display: none; /* Initially hidden */
         }
         .copy-btn:hover {
             background-color: #0056b3;
@@ -68,7 +69,7 @@
         <textarea id="inputSchedule" placeholder="Paste your schedule here"></textarea>
         <button onclick="calculateHours()">Calculate Total Hours</button>
         <div class="result" id="result"></div>
-        <button class="copy-btn" onclick="copyToClipboard()">Copy Result</button>
+        <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()">Copy Result</button>
     </div>
 
     <script>
@@ -103,6 +104,7 @@
             resultText += `\nTotal Hours: ${totalHours.toFixed(2)}`;
             
             document.getElementById('result').innerText = resultText;
+            document.getElementById('copyBtn').style.display = 'block'; // Show the copy button
         }
 
         function copyToClipboard() {
