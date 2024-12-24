@@ -89,7 +89,7 @@
         function calculateHours() {
             let input = document.getElementById('inputSchedule').value;
             input = input.replace(/\s*-\s*/g, '-'); // Remove spaces around hyphens
-            const timeRanges = input.match(/\d{1,2}h?\d{0,2}-\d{1,2}h?\d{0,2}/g) || [];
+            const timeRanges = input.match(/\d{1,2}[:h]?\d{0,2}-\d{1,2}[:h]?\d{0,2}/g) || [];
 
             let totalHours = 0;
             let resultText = '';
