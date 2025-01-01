@@ -102,7 +102,11 @@
         function parseTimeRange(timeRange) {
             const cleanedRange = timeRange.replace(/\s+/g, '-'); // Replace spaces with hyphens
             const [start, end] = cleanedRange.split('-').map(parseTime);
-            return (end - start) / 60;
+
+            // Handle cases where end time is 00h or 00:00
+            const adjustedEnd = end === 0 ? 24 * 60 : end;
+
+            return (adjustedEnd - start) / 60;
         }
 
         function calculateHours() {
